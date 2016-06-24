@@ -18,14 +18,7 @@ import UIKit
 
 
 @objc public class TBHourMinutePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
-    
-	var minuteInterval: StrideTo<Int>? {
-		didSet {
-			if let interval = self.minuteInterval {
-				self.minutesArray = NSArray.arrayWithStringsOfStride(interval)
-			}
-		}
-	}
+	
     let hoursArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 23)
     var minutesArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 59)
     
@@ -37,7 +30,14 @@ import UIKit
     public var labelTextColor : UIColor = .blackColor()
     public var rowHeight : CGFloat = 40
 	public var rowWidth : CGFloat = 100
-
+	public var minuteInterval: StrideTo<Int>? {
+		didSet {
+			if let interval = self.minuteInterval {
+				self.minutesArray = NSArray.arrayWithStringsOfStride(interval)
+			}
+		}
+	}
+	
     override public func awakeFromNib() {
         super.awakeFromNib()
         self.dataSource = self
