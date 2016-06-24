@@ -30,7 +30,8 @@ import UIKit
     public var labelFont: UIFont = UIFont(name: "AvenirNext-UltraLight", size: 35)!
     public var labelTextColor : UIColor = .blackColor()
     public var rowHeight : CGFloat = 40
-    
+	public var rowWidth : CGFloat = 100
+
     override public func awakeFromNib() {
         super.awakeFromNib()
         self.dataSource = self
@@ -77,7 +78,7 @@ import UIKit
     }
     
     public func pickerView(pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
-        return 100
+        return rowWidth
     }
     
     public func pickerView(pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusingView view: UIView?) -> UIView {
