@@ -11,7 +11,7 @@ extension NSArray {
     static func arrayWithStringsOfRange(range: Range<Int> ) -> [String]
     {
         var stringArray = [String]()
-        for i in range{
+        for i in range {
             if i > 9{
                 stringArray.append("\(i)")
             }else{
@@ -22,4 +22,20 @@ extension NSArray {
         return stringArray
         
     }
+	
+	static func arrayWithStringsOfStride(range: StrideTo<Int> ) -> [String]
+	{
+		var stringArray = [String]()
+		for i in range {
+			if i > 9{
+				stringArray.append("\(i)")
+			}else{
+				stringArray.append("0\(i)")
+			}
+		}
+		
+		return stringArray
+		
+	}
+	
 }

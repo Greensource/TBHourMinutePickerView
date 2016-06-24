@@ -19,9 +19,15 @@ import UIKit
 
 @objc public class TBHourMinutePickerView: UIPickerView, UIPickerViewDelegate, UIPickerViewDataSource {
     
-    
+	var minuteInterval: StrideTo<Int>? {
+		didSet {
+			if let interval = self.minuteInterval {
+				self.minutesArray = NSArray.arrayWithStringsOfStride(interval)
+			}
+		}
+	}
     let hoursArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 23)
-    let minutesArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 59)
+    var minutesArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 59)
     
     public var myDelegate: TBHourMinutePickerViewDelegate?
     public var selectedDate: NSDate = NSDate()
