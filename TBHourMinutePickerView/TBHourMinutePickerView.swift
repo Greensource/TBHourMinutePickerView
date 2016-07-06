@@ -22,7 +22,7 @@ import UIKit
     let hoursArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 23)
     var minutesArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 59)
     
-    public var myDelegate: TBHourMinutePickerViewDelegate?
+    public weak var myDelegate: TBHourMinutePickerViewDelegate?
     public var selectedDate: NSDate = NSDate()
     var selectedHour: Int?
     var selectedMinute: Int?
