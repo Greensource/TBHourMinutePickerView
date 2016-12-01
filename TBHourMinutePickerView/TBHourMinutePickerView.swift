@@ -23,9 +23,17 @@ import UIKit
     var minutesArray : [String] = NSArray.arrayWithStringsOfRange(0 ... 59)
     
     public weak var myDelegate: TBHourMinutePickerViewDelegate?
-    public var selectedDate: NSDate = NSDate()
-    var selectedHour: Int?
-    var selectedMinute: Int?
+	public var selectedDate: NSDate {
+		get {
+			let componentsHourMinuteDate = NSDateComponents.dateComponentsFrom(NSDate())
+			componentsHourMinuteDate.hour = selectedHour ?? 0
+			componentsHourMinuteDate.minute = selectedMinute ?? 0
+			
+			return NSDate.dateByComponents(componentsHourMinuteDate)
+		}
+	}
+    public var selectedHour: Int?
+    public var selectedMinute: Int?
     public var labelFont: UIFont = UIFont(name: "AvenirNext-UltraLight", size: 35)!
     public var labelTextColor : UIColor = .blackColor()
     public var rowHeight : CGFloat = 40
@@ -50,25 +58,19 @@ import UIKit
     }
     
     public func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        
+		
         let componentsHourMinuteDate = NSDateComponents.dateComponentsFrom(selectedDate)
-        
         if component == 0 {
             selectedHour = Int(hoursArray[row])!
             componentsHourMinuteDate.hour = selectedHour!
-        }else{
+        } else {
             selectedMinute = Int(minutesArray[row])!
             componentsHourMinuteDate.minute = selectedMinute!
         }
-        
-        selectedDate = NSDate.dateByComponents(componentsHourMinuteDate)
-        
+		
         if let myDelegate = self.myDelegate{
-            
             component == 0 ? myDelegate.didSelectHour?(self, hour: row) : myDelegate.didSelectMinute?(self, minute: row)
         }
-        
     }
     
     public func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
